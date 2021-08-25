@@ -1,10 +1,10 @@
 export class FunctionalTool {
-	public static MultiplyFn<ItemType>(singleFn: (item: ItemType) => any, array: ItemType[]): void {
+	public static multiplyFn<ItemType>(singleFn: (item: ItemType) => any, array: ItemType[]): void {
 		for (const element of array) {
 			singleFn(element);
 		}
 	}
-	public static MultiplyFnCollect<ItemType, ReturnType>(singleFn: (item: ItemType) => ReturnType, array: ItemType[]): ReturnType[] {
+	public static multiplyFnCollect<ItemType, ReturnType>(singleFn: (item: ItemType) => ReturnType, array: ItemType[]): ReturnType[] {
 		const results: ReturnType[] = [];
 		for (const element of array) {
 			results.push(singleFn(element));
@@ -30,12 +30,12 @@ export class FunctionalTool {
 		}
 	}
 
-	public static async ArrayCallPromiseCollect(targetObjects: any[], targetMethodMember: string, args: any[]): Promise<any[]> {
+	public static arrayCallPromiseCollect(targetObjects: any[], targetMethodMember: string, args: any[]): Promise<any[]> {
 		const promises: Promise<any>[] = [];
 		for (const target of targetObjects) {
 			promises.push(target[targetMethodMember](...args));
 		}
-		return await Promise.all(promises);
+		return Promise.all(promises);
 	}
 
 	public static removeArrayItem<ItemType>(array: ItemType[], item: ItemType): void {
